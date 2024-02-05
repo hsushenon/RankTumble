@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RankTumbleApp.AddUpdateRankItemPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Add Update Rank Item Page">
+
+
+    <Grid HorizontalOptions="{OnIdiom Phone=FillAndExpand, Tablet=CenterAndExpand}" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{OnIdiom Phone=*, Tablet=450}" />
+        </Grid.ColumnDefinitions>
+
+
+        <StackLayout
+            Grid.Row="0"
+            Margin="0,5,0,0"
+            Padding="5">
+            <Label FontSize="Medium" Text="Name" />
+            <Editor
+                AutoSize="TextChanges"
+                FontSize="Small"
+                HeightRequest="60"
+                Placeholder="Enter name"
+                PlaceholderColor="Gray"
+                Text="{Binding Name}" />
+
+        </StackLayout>
+        <StackLayout
+            Grid.Row="1"
+            Margin="0,5,0,0"
+            Padding="5">
+            <Label FontSize="Medium" Text="Description" />
+            <Editor
+                AutoSize="TextChanges"
+                FontSize="Small"
+                HeightRequest="120"
+                Placeholder="Enter description"
+                PlaceholderColor="Gray"
+                Text="{Binding Description}" />
+
+        </StackLayout>
+        <StackLayout
+            Grid.Row="2"
+            Margin="0,5,0,0"
+            Padding="5">
+            <Label FontSize="Medium" Text="Category" />
+            <Editor
+                AutoSize="TextChanges"
+                FontSize="Small"
+                HeightRequest="60"
+                IsReadOnly="True"
+                Placeholder="Enter category"
+                PlaceholderColor="Gray"
+                Text="{Binding Category}" />
+
+        </StackLayout>
+        <StackLayout
+            Grid.Row="3"
+            Margin="0,5,0,0"
+            Padding="5">
+            <Label FontSize="Medium" Text="Rank points" />
+            <Editor
+                AutoSize="TextChanges"
+                FontSize="Small"
+                HeightRequest="60"
+                Placeholder="Enter category"
+                PlaceholderColor="Gray"
+                Text="{Binding RankPoints}" />
+
+        </StackLayout>
+
+        <StackLayout
+            Grid.Row="4"
+            Margin="0,30,0,0"
+            Padding="5"
+            Orientation="Horizontal"
+            VerticalOptions="EndAndExpand">
+            <Button
+                Margin="0,0,10,0"
+                BackgroundColor="Gray"
+                Command="{Binding CancelCommand}"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand"
+                Text="Cancel" />
+            <Button
+                Command="{Binding SubmitCommand}"
+                HorizontalOptions="FillAndExpand"
+                Text="Submit" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
