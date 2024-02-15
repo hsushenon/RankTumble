@@ -31,7 +31,10 @@ public partial class CategoryListPage : ContentPage
         var selectedItem = ((ListView)sender).SelectedItem as RankCategory;
         if (selectedItem != null)
         {
-            _ = categoryViewModel.GotoRankList(selectedItem.Name);
+            Category category = new Category();
+            category.ID = selectedItem.ID;
+            category.Name = selectedItem.Name;
+            _ = categoryViewModel.GotoRankList(category);
         }
     }
 

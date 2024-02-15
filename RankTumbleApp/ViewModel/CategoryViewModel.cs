@@ -70,11 +70,11 @@ public partial class CategoryViewModel : ObservableObject
     }
 
     [RelayCommand]//TODO Issue is with MVVM call 
-    public async Task GotoRankList(string categoryName)
+    public async Task GotoRankList(Category category)
     {
         try
         {
-            await Shell.Current.GoToAsync($"{nameof(RankItemListPage)}?CategoryName={categoryName}");
+            await Shell.Current.GoToAsync($"{nameof(RankItemListPage)}?CategoryName={category.Name}&CategoryId={category.ID}");
         }
         catch (Exception)
         {

@@ -7,6 +7,7 @@ namespace RankTumbleApp
     ////For uri based navigation
     [QueryProperty(nameof(RankItemId), "RankItemId")]
     [QueryProperty(nameof(CategoryName), "CategoryName")]
+    [QueryProperty(nameof(CategoryId), "CategoryId")]
     public partial class AddUpdateRankItemViewModel : ObservableObject
     {
         [ObservableProperty]
@@ -41,7 +42,7 @@ namespace RankTumbleApp
                             Id = c.Result.ID;
                             Name = c.Result.Name;
                             Description = c.Result.Description;
-                            Category = c.Result.Category;
+                            CategoryId = c.Result.Category;
                             RankPoints = c.Result.RankPoints;
                         }
                     }
@@ -64,6 +65,16 @@ namespace RankTumbleApp
                 {
                     Category = CategoryName;
                 }
+            }
+        }
+
+        private string categoryId;
+        public string CategoryId
+        {
+            get => categoryId;
+            set
+            {
+                SetProperty(ref categoryId, value);
             }
         }
         public AddUpdateRankItemViewModel()
@@ -94,7 +105,7 @@ namespace RankTumbleApp
                     cat.Name = Name;
                     cat.Description = Description;
                     cat.ID = Id;
-                    cat.Category = Category;
+                    cat.Category = CategoryId;
                     cat.RankPoints = RankPoints;
                     _ = await App.Database.AddUpdateRankItemAsync(cat);
 

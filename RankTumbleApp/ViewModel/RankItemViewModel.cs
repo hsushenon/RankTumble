@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 namespace RankTumbleApp;
 ////For uri based navigation
 [QueryProperty(nameof(CategoryName), "CategoryName")]
+[QueryProperty(nameof(CategoryId), "CategoryId")]
 public partial class RankItemViewModel : ObservableObject
 {
     public INavigation Navigation { get; set; }
@@ -19,7 +20,17 @@ public partial class RankItemViewModel : ObservableObject
         set
         {
             SetProperty(ref categoryName, value);
-            if (!string.IsNullOrEmpty(categoryName))
+        }
+    }
+
+    private string categoryId;
+    public string CategoryId
+    {
+        get => categoryId;
+        set
+        {
+            SetProperty(ref categoryId, value);
+            if (!string.IsNullOrEmpty(categoryId))
             {
                 Load();
             }
@@ -41,7 +52,7 @@ public partial class RankItemViewModel : ObservableObject
     {
         try
         {
-            await Shell.Current.GoToAsync($"{nameof(AddUpdateRankItemPage)}?CategoryName={categoryName}");
+            await Shell.Current.GoToAsync($"{nameof(AddUpdateRankItemPage)}?CategoryName={categoryName}&CategoryId={categoryId}");
         }
         catch (Exception)
         {
@@ -53,7 +64,7 @@ public partial class RankItemViewModel : ObservableObject
     {
         try
         {
-              await Shell.Current.GoToAsync($"{nameof(AddUpdateRankItemPage)}?RankItemId={rankItemId}");
+              await Shell.Current.GoToAsync($"{nameof(AddUpdateRankItemPage)}?RankItemId={rankItemId}&CategoryName={categoryName}");
         }
         catch (Exception)
         {
@@ -176,7 +187,7 @@ public partial class RankItemViewModel : ObservableObject
     {
         try
         {
-            var data = App.Database.GetRankItemByCategoryAsync(CategoryName); 
+            var data = App.Database.GetRankItemByCategoryAsync(CategoryId); 
             if (data.Result != null)
             {
                 RankItemList = GetRankList(data.Result);
